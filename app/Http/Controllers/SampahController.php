@@ -131,7 +131,8 @@ class SampahController extends Controller
     {
         $bank = Banksampah::all();
         $sampah = Sampah::all();
-        return view('kelolasampah.jumlah_sampah', compact('bank','sampah'));
+        $count = Sampah::count();
+        return view('kelolasampah.jumlah_sampah', compact('bank', 'sampah', 'count'));
     }
             
 }

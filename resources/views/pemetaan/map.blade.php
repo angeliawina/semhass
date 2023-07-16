@@ -48,7 +48,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Data Unit Terdaftar </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">20 Unit</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $count }} Unit</div>
                                 {{-- <h1> {{ $akhir->id }}</h1> --}}
                             </div>
                             <div class="col-auto">
@@ -68,7 +68,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                     Data Sampah</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">50 Data</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $count2 }} Data</div>
                             </div>
                             <div class="col-auto">
                                 <a href="{{ route('admin.kelolasampah.jumlah') }}" class="d-none d-sm-inline-block">

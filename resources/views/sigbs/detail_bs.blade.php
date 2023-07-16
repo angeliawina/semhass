@@ -1,4 +1,4 @@
-@extends('layouts.frontend.main')
+@extends('layouts.frontend.main2')
 
 @section('content')
 
@@ -11,25 +11,30 @@
         <div class="container">
             <div class="card-body">
                 <div class="row">
-                    
-                        <img src="{{ asset('storage/' . $bank->foto) }}" height="400px" width="400px">
-                    <section id = "nama">
-                        <div class="container">
-                            <h1>{{ $bank->nama }}</h1>
-                            <h6> {{ $bank->alamat }}</h6>
-                            <a href="{{ $bank->rute }}">
-                                <h6 style="text-align: end">Rute
-                                    <i class="fas fa-map fa-1x text-gray-300"></i>
-                                </h6>
-                            </a>
-                        </div>
-                    </section>
+                    <div class="col-4">
+                        <img src="{{ asset('storage/' . $bank->foto) }}" class="rounded-circle" height="300px" width="300px">
+                    </div>
+
+                    <div class="col-8">
+                        <section id="nama">
+                            <div class="container">
+                                <h1>{{ $bank->nama }}</h1>
+                                <h5> {{ $bank->alamat }}</h5>
+                                <a href="{{ $bank->rute }}">
+                                    <h4>Rute
+                                        <i class="fas fa-map fa-1x text-gray-300"></i>
+                                    </h4>
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+
                 </div>
             </div>
             <div class="container">
                 <div class="row text-center">
-                    <div class="col">
-                        <h5>Data Sampah</h5>
+                    <div class="col mb-2">
+                        <h3>Data Sampah</h3>
                     </div>
                 </div>
 
@@ -46,16 +51,16 @@
                                     <h6 class="card-title">Rp {{ $sph->harga }} </h6>
                                 </div> --}}
 
-                                
-                                
-                                    <img class="card-img-top" style="width:100%; height:250px"
-                                        src="{{ asset('storage/' . $sph->foto) }}" alt="banksampah"></a>
+
+
+                                <img class="card-img-top" style="width:100%; height:250px"
+                                    src="{{ asset('storage/' . $sph->foto) }}" alt="banksampah"></a>
 
                                 <div class="card-body">
                                     <h4 class="card-title">{{ $sph->nama }} </h4>
-                                    <p>{{$sph->harga}}</p>
-                                    </div>
-                                  
+                                    <p>{{ $sph->harga }}</p>
+                                </div>
+
                             </div>
                         </div>
                     @endforeach

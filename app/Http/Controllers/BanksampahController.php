@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Banksampah;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\BankSampahRequest;
+use App\Models\Sampah;
 
 
 class BanksampahController extends Controller
@@ -14,9 +15,11 @@ class BanksampahController extends Controller
     public function dashboard()
     {
         $bank = Banksampah::all();
+        $count = Banksampah::count();
+        $count2 = Sampah::count();
 
         // $akhir = Banksampah::all()->last();
-        return view('pemetaan.map', compact('bank',));
+        return view('pemetaan.map', compact('bank','count','count2'));
     }
 
     public function indexBs()
@@ -147,6 +150,7 @@ class BanksampahController extends Controller
     public function detailUnit()
     {
         $bank = Banksampah::all();
-        return view('kelolabs.detail_unit', compact('bank'));
+        $count = Banksampah::count();
+        return view('kelolabs.detail_unit', compact('bank','count'));
     }
 }

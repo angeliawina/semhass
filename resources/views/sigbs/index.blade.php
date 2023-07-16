@@ -1030,12 +1030,6 @@
                         <div class="col-md-3 mb-3">
                             <section id="card">
                                 <div class="card">
-                                    {{-- <img src="{{ asset('storage/' . $banks->foto) }}" alt="Avatar" style="width:100%; height:300px">
-                                    <div class="container">
-                                      <h4><b>{{$banks->nama}}</b></h4>
-                                      <p>{{$banks->alamat}}</p>
-                                    </div>
-                                  </div> --}}
                                     <a href="{{ route('sigbs.dataBS', ['id' => $banks->id]) }}">
                                         <img class="card-img-top" style="width:100%; height:350px"
                                             src="{{ asset('storage/' . $banks->foto) }}" alt="banksampah"></a>
