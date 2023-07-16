@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/kelolasampah/formubah/{banksampah_id}/sampah/{id}', [SampahController::class, 'formUbahSampah'])->name('admin.kelolasampah.formubah');
     Route::get('/kelolasampah/detail/{banksampah_id}/sampah/{id}', [SampahController::class, 'detailSampah'])->name('admin.kelolasampah.detail');
     Route::post('/kelolasampah/ubah/{banksampah_id}/sampah/{id}', [SampahController::class, 'ubahSampah'])->name('admin.kelolasampah.ubah');
-    Route::get('/kelolasampah/hapus/{id}', [SampahController::class, 'hapusSampah'])->name('admin.kelolasampah.hapus');
+    Route::get('/kelolasampah/hapus/{banksampah_id}/sampah/{id}', [SampahController::class, 'hapusSampah'])->name('admin.kelolasampah.hapus');
     Route::get('/kelolasampah/jumlah', [SampahController::class, 'jumlahSampah'])->name('admin.kelolasampah.jumlah');
 
 });

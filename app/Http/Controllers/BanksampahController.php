@@ -38,41 +38,32 @@ class BanksampahController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function tambahBS(Request $request)
-    {
+    public function tambahbs(Request $request)
+    {      
         try {
-            $imageName = Str::random(32) . "." . $request->foto->getClientOriginalExtension();
+                $file = $request->file('foto');
+                $filename = time() . '-' . $file->getClientOriginalName();
+                $request->foto->move(public_path('storage'), $filename);
 
+                // $imageName = Str::random(32).".".$request->foto->getClientOriginalExtension();
 
-            //buat bank sampah
-            Banksampah::create([
-                'nama' => $request->nama,
-                'alamat' => $request->alamat,
-                'rute' => $request->rute,
-                'foto' => $imageName,
-                'latitude' => $request->latitude,
-                'longitude' => $request->longitude,
-
-            ]);
-
-            //folder foto
-            Storage::disk('public')->put($imageName, file_get_contents($request->foto));
-            $url = Storage::url("/storage/app/{$imageName}");
-            $path = public_path($url);
-            return redirect()->route('admin.banksampah')->with('message', 'Berhasil Menambahkan!');
-
-            //respon
-            return response()->json([
-                'message' => "Berhasil Menambahkan",
-                'foto' => $path
-            ], 200);
-
-            //respon gagal
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => "something went really wrong"
-            ], 500);
-        }
+                //create bank
+                Banksampah::create([
+                    'nama' => $request->nama,
+                    'alamat' => $request->alamat,
+                    'rute' => $request->rute,
+                    'foto' => $filename,
+                    'latitude' => $request->latitude,
+                    'longitude' => $request->longitude,
+                ]);
+              
+                //Json Response
+                return redirect()->route('admin.banksampah')->with('message', 'Berhasil Menambahkan!');
+            } catch (\Exception $e) {
+                        return response()->json([
+                            'message' => "something went really wrong"
+                        ], 500);
+                    }
     }
 
     public function formUbahBS($id)
@@ -83,12 +74,13 @@ class BanksampahController extends Controller
 
     public function ubahBS(Request $request, $id)
     {
-        try {
+        try{
+            //menemukan banksampah
             $bank = Banksampah::find($id);
-            if (!$bank) {
+            if(!$bank){
                 return response()->json([
-                    'message' => 'Data tidak ditemukan'
-                ], 404);
+                    'message' => 'Barang tidak ditemukan'
+                ],404);
             }
 
             $bank->nama = $request->nama;
@@ -97,31 +89,24 @@ class BanksampahController extends Controller
             $bank->latitude = $request->latitude;
             $bank->longitude = $request->longitude;
 
-            if ($request->foto) {
-                $storage = Storage::disk('public');
+            if ($request->hasFile('foto')){             
+                $file = $request->file('foto');
+                $filename = time() . '-' . $file->getClientOriginalName();
+                $request->foto->move(public_path('storage'), $filename);
+                $bank->foto = $filename;
 
-                //hapus foto lama
-                if ($storage->exists($bank->foto))
-                    $storage->delete($bank->foto);
+            //update barang
+            $bank->update();
 
-                //nama foto
-                $imageName = Str::random(32) . "." . $request->foto->getClientOriginalExtension();
-                $bank->foto = $imageName;
-
-                //save foto
-                $storage->put($imageName, file_get_contents($request->foto));
+            //respon json
             }
-
-            //update foto
-            $bank->save();
-
-            //respon
             return redirect()->route('admin.banksampah.detail', ['id' => $bank->id])->with('message', 'Berhasil Mengupdate!');
-        } catch (\Exception $e) {
+        
+        }catch(\Exception $e){
             return response()->json([
                 'message' => "Something went really wrong"
             ]);
-        }
+        } 
     }
 
     public function detailBS($id)

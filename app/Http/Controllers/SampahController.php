@@ -38,30 +38,28 @@ class SampahController extends Controller
 
     public function tambahSampah(Request $request)
     {
-        try{
-            $sampah = Banksampah::findOrFail($request->id);
-            $imageName = Str::random(32).".".$request->foto->getClientOriginalExtension();
+        try {
+                $sampah = Banksampah::findOrFail($request->id);
+                $file = $request->file('foto');
+                $filename = time() . '-' . $file->getClientOriginalName();
+                $request->foto->move(public_path('storage'), $filename);
 
-            $sampah = new Sampah();
-            $sampah->banksampahs_id = $request->id;
-            $sampah->nama = $request->nama;
-            $sampah->harga = $request->harga;
-            $sampah->foto = $imageName;
+                //create sampah
+                $sampah = new Sampah();
+                $sampah->banksampahs_id = $request->id;
+                $sampah->nama = $request->nama;
+                $sampah->harga = $request->harga;
+                $sampah->foto = $filename;
 
-            $sampah->save();
-
-        //folder foto
-        Storage::disk('public') -> put($imageName, file_get_contents($request->foto));
-        $url = Storage::url("/storage/app/{$imageName}");
-        $path = public_path($url);
-
-        return redirect()->route( 'admin.kelolasampah.datasampah', ['id' => $request->id])->with('message','Berhasil Menambahkan!') ;
-
-        }catch(\Exception $e) {
-            return response() -> json([
-                'message' => "something went really wrong"
-            ],500);
-        }
+                $sampah->save();
+              
+            //Json Response
+            return redirect()->route( 'admin.kelolasampah.datasampah', ['id' => $request->id])->with('message','Berhasil Menambahkan!') ;
+            } catch (\Exception $e) {
+                        return response()->json([
+                            'message' => "something went really wrong"
+                        ], 500);
+                    }
     }
 
     public function formUbahSampah($banksampah_id, $id)
@@ -74,47 +72,35 @@ class SampahController extends Controller
     public function ubahSampah(Request $request, $banksampah_id, $id)
     {
         try{
+            //menemukan banksampah
             $bank = Banksampah::where('id', $banksampah_id)->first();
             $sampah = $bank->sampahs()->where('id', $id)->first();
-        if(!$sampah){
-            return response()->json([
-                'message' => 'Data tidak ditemukan'
-            ],404);
+            if(!$sampah){
+                return response()->json([
+                    'message' => 'Data tidak ditemukan'
+                ],404);
         }
-$imageName = Str::random(32).".".$request->foto->getClientOriginalExtension();
-    $sampah->banksampahs_id = $request->banksampahs_id;
-    $sampah->nama = $request->nama;
-    $sampah->harga = $request->harga;
-    $sampah->foto = $imageName;
-    
-    if($request->foto){
-        $storage = Storage::disk('public');
-        //hapus foto lama
-        if ($storage->exists($sampah->foto))
-        $storage->delete($sampah->foto);
+            $sampah->banksampahs_id = $request->banksampahs_id;
+            $sampah->nama = $request->nama;
+            $sampah->harga = $request->harga;
 
-        //nama foto
-        $imageName = Str::random(32).".".$request->foto->getClientOriginalExtension();
-        $sampah->foto = $imageName;
+            if ($request->hasFile('foto')){
+                $file = $request->file('foto');
+                $filename = time() . '-' . $file->getClientOriginalName();
+                $request->foto->move(public_path('storage'), $filename);
+                $sampah->foto = $filename;
 
-        //save foto
-        $storage->put($imageName, file_get_contents($request->foto));
-    }
-
-    //update foto
-    $sampah->save();
-
-    //respon
-     return view('kelolasampah.detail_sampah', compact('bank','sampah'))
-     ->with('message','Berhasil Mengupdate!');
-;
-    // return redirect()->route('admin.kelolasampah.detail',['banksampah_id'=>$sampah->banksampah_id, 'id'=>$sampah->id])->with('message','Berhasil Mengupdate!');
-        }catch(\Exception $e){
-    return response()->json([
-        'message' => "Something went really wrong"
-    ]);
-}}
-
+            //update bank
+            $sampah->update();            
+        }
+        //respon json
+            return redirect()->route('admin.kelolasampah.detail',['banksampah_id'=>$sampah->banksampahs_id, 'id'=>$sampah->id])->with('message','Berhasil Mengupdate!');        
+            }catch(\Exception $e){
+                return response()->json([
+                    'message' => "Something went really wrong"
+            ]);
+        } 
+}
 
     public function detailSampah($banksampah_id, $id)
     {
@@ -123,10 +109,11 @@ $imageName = Str::random(32).".".$request->foto->getClientOriginalExtension();
         return view('kelolasampah.detail_sampah',compact('bank','sampah'));
     }  
 
-    public function hapusSampah($id,)
+    public function hapusSampah($banksampah_id,$id)
     {
-        // $bank = Banksampah::where('id', $banksampah_id)->first();
+        $bank = Banksampah::where('id', $banksampah_id)->first();
         // $sampah = $bank->sampahs()->where('id', $id)->first();
+
         $sampah = Sampah::find($id);
         if (!$sampah) {
             return response()->json([
@@ -137,7 +124,7 @@ $imageName = Str::random(32).".".$request->foto->getClientOriginalExtension();
         if ($url->exists($sampah->foto));
         $sampah->delete($sampah->foto);
         $sampah->delete();
-        return redirect()->route('admin.datasampah')->with('message', 'Berhasil Menghapus!');;
+        return redirect()->route('admin.kelolasampah.datasampah',['id' => $bank->id])->with('message', 'Berhasil Menghapus!');;
     }
 
     public function jumlahSampah()

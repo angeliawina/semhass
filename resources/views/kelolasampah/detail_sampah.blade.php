@@ -18,10 +18,8 @@
                     <div class="card-body">
                         Nama: {{ $sampah->nama }} <br />
                         Harga: {{ $sampah->harga }}<br />
-                        <img src="{{ asset('storage/' . $sampah->foto) }}" height="300px" width="300px">
+                        <img src="{{ asset('storage/' . $sampah->foto) }}" height="400px" width="400px">
                     </div>
-                    <a href="{{ route('admin.kelolasampah.datasampah', ['id' => $bank->id]) }}"
-                        class="btn btn-primary">Kembali</a>
                 </div>
             </div>
         </div>

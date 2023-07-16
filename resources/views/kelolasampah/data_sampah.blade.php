@@ -29,9 +29,7 @@
                             <th scope="col">Foto</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Harga</th>
-                            <th scope="col"> </th>
                             <th scope="col">Action</th>
-                            <th scope="col"> </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,50 +48,40 @@
                                 <td>
                                     <a href="{{ route('admin.kelolasampah.detail', ['banksampah_id' => $sph->banksampahs_id, 'id' => $sph->id]) }}"
                                         class="btn btn-info">Detail</a>
-                                </td>
-
-                                <td>
                                     <a href="{{ route('admin.kelolasampah.formubah', ['banksampah_id' => $sph->banksampahs_id, 'id' => $sph->id]) }}"
                                         class="btn btn-warning">Edit</a>
-                                </td>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#hapusModal">
+                                        Hapus
+                                    </button>
 
-                                <td>
-                                    <a href="{{ route('admin.kelolasampah.hapus', ['banksampah_id' => $sph->banksampahs_id, 'id' => $sph->id]) }}"
-                                        class="btn btn-danger">Hapus</a>
-                                </td>
-
-                                {{-- <td><a
-                                                    href="{{ route('admin.kelolasampah.detail', ['id' => $sph->id]) }}">Detail</a>
-                                            </td>
-                                            <td> <a
-                                                    href="{{ route('admin.banksampah.formubah', ['id' => $banks->id]) }}">Ubah</a>
-                                            </td>
-                                            <td><a
-                                                    href="{{ route('admin.banksampah.hapus', ['id' => $banks->id]) }}">Hapus</a>
-                                            </td> --}}
-                            </tr>
-                            {{-- @endforeach --}}
-
-
-                            {{-- @foreach ($sampah->chunk(3) as $chunk)
-                                        <div class="card-group"> --}}
-                            {{-- @foreach ($chunk as $sph)
-                                                <div class="card-body">
-                                                    <h5 class="card-title">{{ $sph->nama }}</h5>
-                                                    <div class="card" style="width: 18rem; heigh: 18rem; margin:20px">
-                                                        <img class="card-img-top"
-                                                            style="-o-object-fit: cover; width:10rem; height:10rem"
-                                                            src="{{ asset('storage/' . $sph->foto) }}" alt="Card-image cap">
-                                                        <p>{{ $sph->harga }}</p>
-                                                        <div>
-                                                        </div>
-                                                        <a
-                                                            href="{{ route('admin.kelolasampah.detail', ['banksampah_id' => $sph->banksampahs_id, 'id' => $sph->id]) }}">Detail</a>
-                                                        <a
-                                                            href="{{ route('admin.kelolasampah.detail', ['banksampah_id' => $sph->banksampahs_id, 'id' => $sph->id]) }}">Ubah</a>
-                                                    </div>
+                                    <!-- Hapus Modal -->
+                                    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="hapusModalLabel">Alert</h1>
+                                                    <button type="button" class="btn-close" data-dismiss="modal"
+                                                        aria-label="Close"></button>
                                                 </div>
-                                            @endforeach --}}
+                                                <div class="modal-body">
+                                                    Hapus Data ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a
+                                                        href="{{ route('admin.kelolasampah.hapus', ['banksampah_id' => $sph->banksampahs_id, 'id' => $sph->id]) }}">
+                                                        <button type="button" class="btn btn-danger">Hapus</button></a>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Batal</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+
+                            </tr>
             </div>
             @endforeach
             </tbody>
