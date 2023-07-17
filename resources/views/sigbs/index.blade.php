@@ -164,8 +164,8 @@
 
                     L.marker([{{ $bnk->latitude }}, {{ $bnk->longitude }}]).addTo(
                         leafletMap).bindPopup(
-                        '<h1>{{ $bnk->nama }}</h1><br><h5>{{ $bnk->alamat }}</h5><br>  <img src={{ asset('storage/' . $bnk->foto) }} width="500px"; height= "300px" <br>', {
-                            maxWidth: '500',
+                        '<h2>{{ $bnk->nama }}</h2><br><h6>{{ $bnk->alamat }}</h6><br>  <img src={{ asset('storage/' . $bnk->foto) }} width="400px"; height= "300px" <br>', {
+                            maxWidth: '400',
                         }
 
                     );
