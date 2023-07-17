@@ -54,13 +54,14 @@
                                         class="btn btn-info">Detail</a>
                                     <a href="{{ route('admin.banksampah.formubah', ['id' => $banks->id]) }}"
                                         class="btn btn-warning">Edit</a>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-target="#hapusModal">
-                                        Hapus
-                                    </button>
+                                    <a href="{{ route('admin.banksampah.hapus', ['id' => $banks->id]) }}"
+                                        data-toggle="modal" data-target="#hapusModal{{ $banks->id }}"
+                                        class="btn btn-danger">Delete</a>
+
+
                                     <!-- Hapus Modal -->
-                                    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel"
-                                        aria-hidden="true">
+                                    <div class="modal fade" id="hapusModal{{ $banks->id }}" tabindex="-1"
+                                        aria-labelledby="hapusModalLabel" value='{{ $banks->id }}' aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">

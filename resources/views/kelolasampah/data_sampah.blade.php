@@ -50,14 +50,13 @@
                                         class="btn btn-info">Detail</a>
                                     <a href="{{ route('admin.kelolasampah.formubah', ['banksampah_id' => $sph->banksampahs_id, 'id' => $sph->id]) }}"
                                         class="btn btn-warning">Edit</a>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-target="#hapusModal">
-                                        Hapus
-                                    </button>
+                                    <a href="{{ route('admin.kelolasampah.hapus', ['banksampah_id' => $sph->banksampahs_id, 'id' => $sph->id]) }}"
+                                        data-toggle="modal" data-target="#hapusModal{{ $sph->id }}"
+                                        class="btn btn-danger">Hapus</a>
 
                                     <!-- Hapus Modal -->
-                                    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel"
-                                        aria-hidden="true">
+                                    <div class="modal fade" id="hapusModal{{ $sph->id }}" tabindex="-1"
+                                        aria-labelledby="hapusModalLabel" value='{{ $sph->id }}' aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">

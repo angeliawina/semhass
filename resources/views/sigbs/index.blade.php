@@ -1066,18 +1066,35 @@
                     </div>
                 </div>
                 <div class="row fs-5">
-                    <div class="col-3">
-                        <img src="{{ asset('images/sigbs logo.png') }}" alt="logo" width="220px" />
+                    <div class="col">
+                        <a href="#page-top">
+                            <img src="{{ asset('images/hijau.png') }}" alt="logo" width="400px" /></a>
+
+                        <div class="col">
+                            <p style="font-size: 20px"> Sistem Informasi Geografis Bank Sampah Kota Pontianak
+                                merupakan sebuah website yang memberikan informasi tentang lokasi Bank Sampah yang ada di
+                                Kota Pontianak.
+
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="col-9">
-                        <p style="font-size: 25px"> SIGBS atau Sistem Informasi Geografis Bank Sampah Kota Pontianak
-                            merupakan sebuah website yang memberikan informasi tentang lokasi Bank Sampah yang ada di Kota
-                            Pontianak beserta data-data sampah apasaja yang dapat diterima pada Banksampah yang terdaftar.
-                            Website ini juga memuat peta yang menunjukkan titik lokasi unit Banksampah yang dapat diakses
-                            menggunakan google maps.
-                        </p>
+                    <div class="col">
+                        <a href="https://www.instagram.com/banksampahinduk_pontianak/?igshid=MzRlODBiNWFlZA==">
+                            <img src="{{ asset('images/bsiKha.jpeg') }}" alt="logo" width="525px" /></a>
+                        <div class="col">
+                            <p style="font-size: 20px">
+                                Berdiri sejak tahun 2019 dan berlokasi di Jalan Nipah Kuning Dalam, Kelurahan Pal Lima,
+                                Kecamatan Pontianak Barat.
+                            </p>
+                        </div>
                     </div>
+
+
+
+
+
+
                 </div>
             </div>
 

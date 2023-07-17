@@ -45,7 +45,7 @@ class BanksampahController extends Controller
     {      
         try {
                 $file = $request->file('foto');
-                $filename = time() . '-' . $file->getClientOriginalName();
+                $filename = Str::random(32).".".$file->getClientOriginalExtension();
                 $request->foto->move(public_path('storage'), $filename);
 
                 // $imageName = Str::random(32).".".$request->foto->getClientOriginalExtension();
@@ -94,7 +94,7 @@ class BanksampahController extends Controller
 
             if ($request->hasFile('foto')){             
                 $file = $request->file('foto');
-                $filename = time() . '-' . $file->getClientOriginalName();
+                $filename = Str::random(32).".".$file->getClientOriginalExtension();
                 $request->foto->move(public_path('storage'), $filename);
                 $bank->foto = $filename;
 
