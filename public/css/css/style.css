@@ -76,7 +76,14 @@
         "Lucida Sans", Arial, sans-serif;
 }
 
-section {
+#detail {
     padding-top: 5rem;
-    padding-bottom: 7rem;
+    padding-bottom: 3rem;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+}
+
+section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }

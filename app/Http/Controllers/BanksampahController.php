@@ -118,20 +118,6 @@ class BanksampahController extends Controller
         return view('kelolabs.detail_bs', compact('bank'));
     }
 
-
-
-    public function titik()
-    {
-        $bank = Banksampah::all();
-        return json_encode($bank);
-    }
-
-    public function popup($id = '')
-    {
-        $bank = Banksampah::all();
-        return json_encode($bank);
-    }
-
     public function hapusBS($id)
     {
         $bank = Banksampah::find($id);
@@ -153,4 +139,16 @@ class BanksampahController extends Controller
         $count = Banksampah::count();
         return view('kelolabs.detail_unit', compact('bank','count'));
     }
+
+    // public function titik()
+    // {
+    //     $bank = Banksampah::all();
+    //     return json_encode($bank);
+    // }
+
+    // public function popup($id = '')
+    // {
+    //     $bank = Banksampah::all();
+    //     return json_encode($bank);
+    // }
 }

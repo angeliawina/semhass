@@ -26,5 +26,4 @@ class Banksampah extends Model
         return $this->hasMany(Sampah::class, 'banksampahs_id', 'id');
     }
 
- 
 }

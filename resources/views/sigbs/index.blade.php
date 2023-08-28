@@ -101,12 +101,12 @@
         <section id="pemetaan">
             <div class="container-fluid ">
                 <div class="row text-center mb-2">
-                    <h2>Pemetaan</h2>
+                    <h2>Peta Lokasi Bank Sampah di Kota Pontianak</h2>
                 </div>
 
                 <div class="card shadow">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Pemetaan</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Lokasi</h6>
                         <div class="dropdown no-arrow">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -1021,7 +1021,7 @@
             <div class="container">
                 <div class="row text-center">
                     <div class="col">
-                        <h2>Banksampah</h2>
+                        <h2>Daftar Bank Sampah</h2>
                     </div>
                 </div>
 
@@ -1029,14 +1029,14 @@
                     @foreach ($bank as $banks)
                         <div class="col-md-3 mb-3">
                             <section id="card">
-                                <div class="card">
+                                <div class="card" style="width:100%">
                                     <a href="{{ route('sigbs.dataBS', ['id' => $banks->id]) }}">
-                                        <img class="card-img-top" style="width:100%; height:350px"
+                                        <img class="card-img-top" style="width:100%; height:300px"
                                             src="{{ asset('storage/' . $banks->foto) }}" alt="banksampah"></a>
 
                                     <div class="card-body">
                                         <h4 class="card-title">{{ $banks->nama }} </h4>
-                                        <p>{{ $banks->alamat }}</p>
+                                        {{-- <p>{{ $banks->alamat }}</p> --}}
                                     </div>
                             </section>
 
@@ -1062,7 +1062,7 @@
             <div class="container">
                 <div class="row text-center">
                     <div class="col">
-                        <h2>About</h2>
+                        <h2>Tentang SIGBS</h2>
                     </div>
                 </div>
                 <div class="row fs-5">

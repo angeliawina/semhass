@@ -15,7 +15,7 @@
                         <img src="{{ asset('storage/' . $bank->foto) }}" class="rounded-circle" height="300px" width="300px">
                     </div>
 
-                    <div class="col-8">
+                    <div class="col-8" style="padding-top: 4rem">
                         <section id="nama">
                             <div class="container">
                                 <h1>{{ $bank->nama }}</h1>
@@ -40,8 +40,8 @@
 
                 <div class="row align-items-center">
                     @foreach ($sampah as $sph)
-                        <div class="col-md-4 mb-4">
-                            <div class="card" style="width: 300">
+                        <div class="col-md-3 mb-3">
+                            <div class="card" style="width:100%">
 
                                 {{-- <img class="card-img-top" style="-o-object-fit: cover; width:9rem; height:9rem"
                                     src="{{ asset('storage/' . $sph->foto) }}" alt="sampah">

@@ -15,16 +15,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('sigbs.index') }}">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('sigbs.index') }}">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#pemetaan">Pemetaan</a>
+                    <a class="nav-link" href="#pemetaan">Lokasi</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#banksampah">Banksampah</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">About</a>
+                    <a class="nav-link" href="#about">Tentang</a>
                 </li>
             </ul>
         </div>

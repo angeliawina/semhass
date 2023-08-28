@@ -16,7 +16,13 @@ class SigbsController extends Controller
         return view('sigbs.index', compact('bank',));
     }
 
-    // public function banksampah()
+    public function dataBS($id)
+    {
+        $bank = Banksampah::find($id);
+        $sampah = Sampah::where('banksampahs_id', $id)->get();
+        return view('sigbs.detail_bs', compact('bank','sampah'));
+    }
+     // public function banksampah()
     // {
     //     $bank = Banksampah::all();
     //     return view('sigbs.banksampah', compact('bank'));
@@ -27,12 +33,4 @@ class SigbsController extends Controller
     //     $bank = Banksampah::all();
     //     return view('sigbs.pemetaan',compact('bank'));
     // }
-
-    public function dataBS($id)
-    {
-        $bank = Banksampah::find($id);
-        $sampah = Sampah::where('banksampahs_id', $id)->get();
-        return view('sigbs.detail_bs', compact('bank','sampah'));
-    }
-    
 }

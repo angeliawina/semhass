@@ -39,10 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/kelolabs/ubah/{id}', [BanksampahController::class, 'ubahBS'])->name('admin.banksampah.ubah');
     Route::get('/kelolabs/detail/{id}', [BanksampahController::class, 'detailBS'])->name('admin.banksampah.detail');
     Route::get('/kelolabs/hapus/{id}', [BanksampahController::class, 'hapusBS'])->name('admin.banksampah.hapus');
-    Route::get('/kelolabs/titik', [BanksampahController::class, 'titik'])->name('admin.banksampah.titik');
-    Route::get('/kelolabs/popup/{id}', [BanksampahController::class, 'popup'])->name('admin.banksampah.popup');
     Route::get('/kelolabs/unit', [BanksampahController::class, 'detailUnit'])->name('admin.banksampah.unit');
-    
+    // Route::get('/kelolabs/titik', [BanksampahController::class, 'titik'])->name('admin.banksampah.titik');
+    // Route::get('/kelolabs/popup/{id}', [BanksampahController::class, 'popup'])->name('admin.banksampah.popup');
 
     //DATA SAMPAH
     Route::get('/kelolasampah/index', [SampahController::class, 'indexSampah'])->name('admin.datasampah');
@@ -58,21 +57,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
- 
-
-    
-
    
-    //PETA
-    Route::get('/pemetaan/map', [PetaController::class, 'map'])->name('admin.map');
-
-
     //SIGBS
     Route::get('/sigbs/dashboard', [SigbsController::class, 'index'])->name('sigbs.index');
-    // Route::get('/sigbs/bs', [SigbsController::class, 'banksampah'])->name('sigbs.bs');
-    // Route::get('/sigbs/map', [SigbsController::class, 'pemetaan'])->name('sigbs.pemetaan');
     Route::get('/sigbs/banksampah/{id}', [SigbsController::class, 'dataBS'])->name('sigbs.dataBS');
     
-
+    //PETA
+    Route::get('/pemetaan/map', [PetaController::class, 'map'])->name('admin.map');
 
